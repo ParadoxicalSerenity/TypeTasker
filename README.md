@@ -1,4 +1,5 @@
 # TypeTasker
+
 ![NPM Version](https://img.shields.io/npm/v/typetasker)
 ![NPM Downloads](https://img.shields.io/npm/dw/typeTasker)
 ![NPM Type Definitions](https://img.shields.io/npm/types/typetasker)
@@ -14,14 +15,13 @@ Install typetasker as a development dependency with npm
   npm i typetasker -D
 ```
 
-
 ## Documentation
 
 [Documentation](https://github.com/ParadoxicalSerenity/TypeTasker/wiki)
 
 ## Why another Task Runner?
-I started working on TypeTasker simply because I simply don't like any other existing options that I've come across for one reason or another.
 
+I started working on TypeTasker simply because I simply don't like any other existing options that I've come across for one reason or another.
 
 ## License
 

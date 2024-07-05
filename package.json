@@ -9,7 +9,6 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc",
-    "sample": "node dist/sample.js",
     "pretest": "npm run build",
     "test": "node --test 'dist/**/*.test.js'"
   },
