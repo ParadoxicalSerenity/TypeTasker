@@ -7,9 +7,15 @@ export interface Task {
 }
 
 export default class TypeTasker{
+    private engine = new TypeTaskerEngine()
     private tasks: Task[] = [];
     constructor(){
 
     }
     
+}
+class TypeTaskerEngine{
+    constructor(){
+
+    }
 }
