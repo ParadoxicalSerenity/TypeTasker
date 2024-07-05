@@ -4,7 +4,7 @@
   "description": "A typescript first task runner.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,6 @@
   "homepage": "https://github.com/ParadoxicalSerenity/TypeTasker#readme",
   "devDependencies": {
     "typescript": "^5.5.3"
-  }
+  },
+  "files":["dist"]
 }
