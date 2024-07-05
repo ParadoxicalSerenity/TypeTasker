@@ -4,6 +4,7 @@
   "description": "A typescript first task runner.",
   "main": "dist/index.js",
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "tsc",
     "release:patch": "npm run build && npm version patch && npm publish",
     "release:minor": "npm run build && npm version minor && npm publish",
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/ParadoxicalSerenity/TypeTasker#readme",
   "devDependencies": {
+    "ava": "^6.1.3",
     "prettier": "^3.3.2",
     "typescript": "^5.5.3"
   },
