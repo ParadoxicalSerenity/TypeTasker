@@ -1,6 +1,6 @@
 {
   "name": "typetasker",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A typescript first task runner.",
   "main": "dist/index.js",
   "scripts": {
@@ -19,5 +19,7 @@
   "devDependencies": {
     "typescript": "^5.5.3"
   },
-  "files":["dist"]
+  "files": [
+    "dist"
+  ]
 }
