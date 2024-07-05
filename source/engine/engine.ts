@@ -1,9 +1,5 @@
 import winston, { loggers } from "winston";
-
-export interface Task {
-  taskName: string;
-  cb: () => any;
-}
+import { Task } from "../interfaces.js";
 
 export class TypeTaskerEngine {
   tasks: Task[] = [];
