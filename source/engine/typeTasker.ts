@@ -3,15 +3,14 @@ import { TypeTaskerEngine } from "./engine.js";
 import { TypeTaskerPublicInterface } from "../interfaces.js";
 
 export default class TypeTasker implements TypeTaskerPublicInterface {
-  private logger: winston.Logger = winston.createLogger({
-    transports: [
-      new winston.transports.Console({
-        format: winston.format.simple(),
-        level: "verbose",
-      }),
-    ],
-  });
-  private engine = new TypeTaskerEngine(this.logger);
+  constructor(logger: winston.Logger) {
+    logger.debug("Creating instance of TypeTasker");
+    this.logger = logger;
+    this.logger.verbose("Creating Engine Instance...");
+    this.engine = new TypeTaskerEngine(this.logger);
+  }
+  private logger;
+  private engine;
   register(taskName: string, cb: () => void) {
     this.engine.add({
       taskName: taskName,

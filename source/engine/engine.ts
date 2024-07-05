@@ -1,4 +1,4 @@
-import winston, { loggers } from "winston";
+import winston from "winston";
 import { Task } from "../interfaces.js";
 
 export class TypeTaskerEngine {
@@ -8,6 +8,7 @@ export class TypeTaskerEngine {
     this.logger = logger;
   }
   add(task: Task) {
+    this.logger.verbose(`Registering ${task.taskName} to internal engine...`);
     this.tasks.push({
       taskName: task.taskName,
       cb: task.cb,

@@ -1,6 +1,6 @@
 {
   "name": "typetasker",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A typescript first task runner.",
   "main": "dist/main.js",
   "bin": {
@@ -9,7 +9,6 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc",
-    "sample": "node dist/sample.js",
     "pretest": "npm run build",
     "test": "node --test 'dist/**/*.test.js'"
   },
@@ -24,15 +23,17 @@
   },
   "homepage": "https://github.com/ParadoxicalSerenity/TypeTasker#readme",
   "dependencies": {
+    "@commander-js/extra-typings": "^12.1.0",
     "commander": "^12.1.0",
     "winston": "^3.13.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.6.0",
     "@types/node": "^20.14.9",
+    "eslint": "^8.0.0",
+    "globals": "^15.8.0",
     "prettier": "^3.3.2",
-    "typescript": "^5.5.3"
-  },
-  "files": [
-    "dist","bin"
-  ]
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^7.15.0"
+  }
 }
