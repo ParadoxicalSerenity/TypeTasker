@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ParadoxicalSerenity/TypeTask.git"
+    "url": "git+https://github.com/ParadoxicalSerenity/TypeTasker.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ParadoxicalSerenity/TypeTask/issues"
+    "url": "https://github.com/ParadoxicalSerenity/TypeTasker/issues"
   },
-  "homepage": "https://github.com/ParadoxicalSerenity/TypeTask#readme",
+  "homepage": "https://github.com/ParadoxicalSerenity/TypeTasker#readme",
   "devDependencies": {
     "typescript": "^5.5.3"
   }
