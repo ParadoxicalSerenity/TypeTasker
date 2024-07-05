@@ -1,5 +1,10 @@
 {
-	"name": "TypeTasker",
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
-	"postCreateCommand": "npm install"
+  "name": "TypeTasker",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": ["esbenp.prettier-vscode", "vscode-icons-team.vscode-icons"]
+    }
+  }
 }
