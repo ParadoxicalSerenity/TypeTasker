@@ -1,3 +1,2 @@
-export function version(): string{
-    return '0.0.1'
-}
+import TypeTasker from "./engine/typeTasker.js";
+export default TypeTasker;
