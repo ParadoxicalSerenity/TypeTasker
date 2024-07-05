@@ -1,2 +1,2 @@
-# TypeTask
+# TypeTasker
 Typescript first task runner.

@@ -1,5 +1,5 @@
 {
-  "name": "typetask",
+  "name": "typetasker",
   "version": "0.0.0",
   "description": "A typescript first task runner.",
   "main": "dist/index.js",
