@@ -1,4 +1,21 @@
 {
+  "name": "typetask",
+  "version": "0.0.0",
+  "description": "A typescript first task runner.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParadoxicalSerenity/TypeTask.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ParadoxicalSerenity/TypeTask/issues"
+  },
+  "homepage": "https://github.com/ParadoxicalSerenity/TypeTask#readme",
   "devDependencies": {
     "typescript": "^5.5.3"
   }
