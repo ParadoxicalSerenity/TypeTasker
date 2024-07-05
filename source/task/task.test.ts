@@ -7,13 +7,13 @@ describe("Tasks", () => {
     assert.doesNotThrow(() => new TT_Task("Test", () => {}));
   });
   it("should be able to run arbitrarily defined code", () => {
-    assert.doesNotThrow(
-      () =>
-        new TT_Task("Test", () => {
-          const x = 5;
-          const y = 5;
-          const z = x + y;
-        })
+    assert.doesNotThrow(() =>
+      new TT_Task("Test", () => {
+        const x = 5;
+        const y = 5;
+        const z = x + y;
+        assert.strictEqual(z, 10);
+      }).execute()
     );
   });
   it("should have a name", () => {
