@@ -14,6 +14,11 @@ Install typetasker as a development dependency with npm
   npm i typetasker -D
 ```
 
+
+## Documentation
+
+[Documentation](https://github.com/ParadoxicalSerenity/TypeTasker/wiki)
+
 ## Why another Task Runner?
 I started working on TypeTasker simply because I simply don't like any other existing options that I've come across for one reason or another.
 
