@@ -3,6 +3,15 @@
 
 Typescript first task runner.
 
+## Installation
+
+Install typetasker as a development dependency with npm
+
+```bash
+  npm i typetasker -D
+```
+    
+
 ## License
 
 License under under the [MIT](https://choosealicense.com/licenses/mit/) license.
