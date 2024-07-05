@@ -17,7 +17,8 @@ describe("Tasks", () => {
     );
   });
   it("should have a name", () => {
-    const task = new TT_Task("Test", () => {});
-    assert.strictEqual(task.taskName, "Test");
+    const testName = "Test";
+    const task = new TT_Task(testName, () => {});
+    assert.strictEqual(task.taskName, testName);
   });
 });
