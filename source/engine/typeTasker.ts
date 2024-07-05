@@ -1,21 +1,26 @@
+import winston, { loggers } from "winston";
 import { Task, TypeTaskerEngine } from "./engine.js";
+import { TypeTaskerPublicInterface } from "../interfaces.js";
 
-export default class TypeTasker {
+export default class TypeTasker implements TypeTaskerPublicInterface {
+  private logger: winston.Logger = winston.createLogger({
+    transports: [
+      new winston.transports.Console({
+        format: winston.format.simple(),
+        level: "verbose",
+      }),
+    ],
+  });
+  private engine = new TypeTaskerEngine(this.logger);
   register(taskName: string, cb: () => void) {
-    this.tasks.push({
+    this.engine.add({
       taskName: taskName,
       cb: cb,
     });
   }
   execute() {
-    this.tasks.every((value, index) => {
-      console.log(`DidRun + ${index}`);
-      value.cb();
-      if (index === this.tasks.length) return false;
-      return true;
-    });
+    this.logger.verbose("Starting execution engine");
+    this.engine.execute();
+    this.logger.verbose("Ending execution engine");
   }
-  private engine = new TypeTaskerEngine();
-  private tasks: Task[] = [];
-  constructor() {}
 }

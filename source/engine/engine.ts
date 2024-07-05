@@ -1,3 +1,5 @@
+import winston, { loggers } from "winston";
+
 export interface Task {
   taskName: string;
   cb: () => any;
@@ -5,11 +7,22 @@ export interface Task {
 
 export class TypeTaskerEngine {
   tasks: Task[] = [];
-  constructor() {}
+  logger: winston.Logger;
+  constructor(logger: winston.Logger) {
+    this.logger = logger;
+  }
   add(task: Task) {
     this.tasks.push({
       taskName: task.taskName,
       cb: task.cb,
+    });
+  }
+  execute() {
+    this.tasks.every((task, index) => {
+      this.logger.info(`Running ${task.taskName}`);
+      task.cb();
+      if (index === this.tasks.length) return false;
+      return true;
     });
   }
 }
