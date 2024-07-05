@@ -23,13 +23,14 @@
   },
   "homepage": "https://github.com/ParadoxicalSerenity/TypeTasker#readme",
   "dependencies": {
+    "@commander-js/extra-typings": "^12.1.0",
     "commander": "^12.1.0",
     "winston": "^3.13.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.6.0",
     "@types/node": "^20.14.9",
-    "eslint": "^9.6.0",
+    "eslint": "^8.0.0",
     "globals": "^15.8.0",
     "prettier": "^3.3.2",
     "typescript": "^5.5.3",
