@@ -1,15 +1,12 @@
 {
   "name": "typetasker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A typescript first task runner.",
   "main": "dist/main.js",
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc",
-    "sample": "node dist/sample.js",
-    "release:patch": "npm run build && npm version patch && npm publish",
-    "release:minor": "npm run build && npm version minor && npm publish",
-    "release:major": "npm run build && npm version major && npm publish"
+    "sample": "node dist/sample.js"
   },
   "repository": {
     "type": "git",
