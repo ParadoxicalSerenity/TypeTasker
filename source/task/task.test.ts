@@ -1,0 +1,24 @@
+import { test, describe, it } from "node:test";
+import assert from "node:assert";
+import { TT_Task } from "./task.js";
+
+describe("Tasks", () => {
+  it("should not error when creating a task", () => {
+    assert.doesNotThrow(() => new TT_Task("Test", () => {}));
+  });
+  it("should be able to run arbitrarily defined code", () => {
+    assert.doesNotThrow(() =>
+      new TT_Task("Test", () => {
+        const x = 5;
+        const y = 5;
+        const z = x + y;
+        assert.strictEqual(z, 10);
+      }).execute()
+    );
+  });
+  it("should have a name", () => {
+    const testName = "Test";
+    const task = new TT_Task(testName, () => {});
+    assert.strictEqual(task.taskName, testName);
+  });
+});

@@ -1,5 +1,5 @@
-import winston, { loggers } from "winston";
-import { Task, TypeTaskerEngine } from "./engine.js";
+import winston from "winston";
+import { TypeTaskerEngine } from "./engine.js";
 import { TypeTaskerPublicInterface } from "../interfaces.js";
 
 export default class TypeTasker implements TypeTaskerPublicInterface {
