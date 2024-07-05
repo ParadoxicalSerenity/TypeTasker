@@ -9,7 +9,7 @@ defaultTypeTasker.register("build", () => {
   });
 });
 defaultTypeTasker.register("prebuild", () => {
-  exec("npm --version", function (err, stdout) {
+  exec("node --version", function (err, stdout) {
     console.log(stdout);
     if (err) console.log(err);
   });
