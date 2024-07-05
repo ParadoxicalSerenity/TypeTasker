@@ -21,6 +21,12 @@
   "bugs": {
     "url": "https://github.com/ParadoxicalSerenity/TypeTasker/issues"
   },
+  "keywords": [
+    "tooling",
+    "cli",
+    "task",
+    "runner"
+  ],
   "homepage": "https://github.com/ParadoxicalSerenity/TypeTasker#readme",
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
