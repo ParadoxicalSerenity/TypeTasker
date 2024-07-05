@@ -9,12 +9,11 @@ program
   .version("0.0.4")
   .addOption(
     new Option("--logLevel <level>", "set log level")
-      .choices(["verbose", "info", "error"] as const)
+      .choices(["error", "warn", "info", "verbose", "debug"] as const)
       .default("info")
   )
 
   .action((option) => {
-    console.log(option.logLevel);
     const logger = getLogger(option.logLevel);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const instance = new TypeTasker(logger);
