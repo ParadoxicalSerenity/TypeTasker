@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ParadoxicalSerenity/TypeTasker#readme",
   "devDependencies": {
+    "prettier": "^3.3.2",
     "typescript": "^5.5.3"
   },
   "files": [
