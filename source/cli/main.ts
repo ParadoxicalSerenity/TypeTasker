@@ -6,7 +6,7 @@ import { getLogger } from "../logger";
 program
   .name("TypeTasker")
   .description("TypeTasker - Typescript first task runner.")
-  .version("0.1.0")
+  .version("0.1.1")
   .addOption(
     new Option("--logLevel <level>", "set log level")
       .choices(["error", "warn", "info", "verbose", "debug"] as const)
