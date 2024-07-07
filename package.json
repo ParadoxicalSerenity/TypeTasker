@@ -1,6 +1,6 @@
 {
   "name": "typetasker",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A typescript first task runner.",
   "main": "dist/main.js",
   "bin": {
@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/ParadoxicalSerenity/TypeTasker.git"
   },
-  "author": "",
+  "author": "Paradoxical Serenity <paradoxicalserenity@protonmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ParadoxicalSerenity/TypeTasker/issues"
