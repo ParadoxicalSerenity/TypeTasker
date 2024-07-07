@@ -11,10 +11,10 @@ export default class TypeTasker implements TypeTaskerPublicInterface {
   }
   private logger;
   private engine;
-  register(taskName: string, cb: () => void) {
+  register(taskName: string, callback: () => void) {
     this.engine.add({
       taskName: taskName,
-      cb: cb,
+      callback: callback,
     });
   }
   execute() {

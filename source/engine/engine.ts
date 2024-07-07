@@ -1,5 +1,5 @@
 import winston from "winston";
-import { Task } from "../interfaces.js";
+import { Task } from "../task/task";
 
 export class TypeTaskerEngine {
   tasks: Task[] = [];
@@ -11,13 +11,13 @@ export class TypeTaskerEngine {
     this.logger.verbose(`Registering ${task.taskName} to internal engine...`);
     this.tasks.push({
       taskName: task.taskName,
-      cb: task.cb,
+      callback: task.callback,
     });
   }
   execute() {
     this.tasks.every((task, index) => {
       this.logger.info(`Running ${task.taskName}`);
-      task.cb();
+      task.callback();
       if (index === this.tasks.length) return false;
       return true;
     });
