@@ -1,5 +1,5 @@
 import { getLogger } from "./logger";
-import TypeTasker, { EmptyRunner, Task } from "./main";
+import {TypeTasker, EmptyRunner, Task } from "./main";
 
 new TypeTasker(
   new Task({
