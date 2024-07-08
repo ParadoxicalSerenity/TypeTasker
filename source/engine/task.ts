@@ -35,8 +35,10 @@ export class Task {
   private async runDependencies(logger: winston.Logger) {
     this.status = "Waiting";
     logger.verbose(`Running ${this.name} task dependencies...`);
-    const promises = this.dependencies.map((task) => task.execute(logger));
-    await Promise.all(promises);
+    if (this.dependencies.length >= 1) {
+      const promises = this.dependencies.map((task) => task.execute(logger));
+      await Promise.all(promises);
+    }
   }
 
   async execute(logger: winston.Logger) {
