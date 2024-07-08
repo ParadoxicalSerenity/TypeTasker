@@ -19,6 +19,33 @@ Install typetasker as a development dependency with npm
 
 [Documentation](https://github.com/ParadoxicalSerenity/TypeTasker/wiki)
 
+## Example
+```typescript
+import { getLogger } from "./logger";
+import TypeTasker, { EmptyRunner, Task } from "./main";
+
+new TypeTasker(
+  new Task({
+    name: "Full Build",
+    dependsOn: [
+      new Task({
+        name: "Build",
+        runner: new EmptyRunner(),
+        dependsOn: [
+          new Task({
+            name: "Install",
+            runner: new EmptyRunner(),
+            dependsOn: [],
+          }),
+        ],
+      }),
+    ],
+    runner: new EmptyRunner(),
+  }),
+  getLogger("info")
+).run();
+```
+
 ## Why another Task Runner?
 
 I started working on TypeTasker simply because I simply don't like any other existing options that I've come across for one reason or another.
