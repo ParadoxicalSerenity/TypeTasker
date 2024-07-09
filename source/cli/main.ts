@@ -1,8 +1,6 @@
 import { program, Option } from "@commander-js/extra-typings";
 import { argv } from "process";
 import { getLogger } from "../logger";
-import { TypeTasker } from "../engine/typeTasker";
-import { EmptyRunner, Task } from "../main";
 
 program
   .name("TypeTasker")
@@ -16,15 +14,6 @@ program
 
   .action((option) => {
     const logger = getLogger(option.logLevel);
-    const typeTasker = new TypeTasker(
-      new Task({
-        name: "Example Task",
-        runner: new EmptyRunner(),
-        dependsOn: [],
-      }),
-      logger
-    );
-    typeTasker.run();
   });
 
 program.parse(argv);
