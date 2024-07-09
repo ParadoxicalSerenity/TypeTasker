@@ -21,29 +21,34 @@ Install typetasker as a development dependency with npm
 
 ## Example
 ```typescript
-import { getLogger } from "./logger";
-import TypeTasker, { EmptyRunner, Task } from "./main";
+import { TypeTasker, EmptyRunner } from "./main";
 
-new TypeTasker(
-  new Task({
-    name: "Full Build",
-    dependsOn: [
-      new Task({
-        name: "Build",
-        runner: new EmptyRunner(),
-        dependsOn: [
-          new Task({
-            name: "Install",
-            runner: new EmptyRunner(),
-            dependsOn: [],
-          }),
-        ],
-      }),
-    ],
-    runner: new EmptyRunner(),
-  }),
-  getLogger("info")
-).run();
+const typeTasker = new TypeTasker({
+  logger: { enabled: true, logLevel: "verbose" },
+});
+
+const test_one = typeTasker.createTask({
+  name: "test_one",
+  runner: new EmptyRunner(),
+  dependsOn: [],
+});
+const test_two = typeTasker.createTask({
+  name: "test_two",
+  runner: new EmptyRunner(),
+  dependsOn: [test_one],
+});
+const test_three = typeTasker.createTask({
+  name: "test_three",
+  runner: new EmptyRunner(),
+  dependsOn: [test_two, test_one],
+});
+const test_four = typeTasker.createTask({
+  name: "test_four",
+  runner: new EmptyRunner(),
+  dependsOn: [test_two, test_one, test_three],
+});
+
+typeTasker.run(test_four);
 ```
 
 ## Why another Task Runner?
