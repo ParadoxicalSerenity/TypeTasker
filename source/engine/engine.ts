@@ -11,10 +11,10 @@ export class TypeTaskerEngine {
       task.status = "Waiting";
       this.logger?.verbose(`${task.name} - ${task.status}`);
       const promises = task.dependsOn.map(async (task) => await this.run(task));
-      await Promise.all(promises);
+      Promise.all(promises);
       task.status = "Processing";
       this.logger?.verbose(`${task.name} - ${task.status}`);
-      await task.runner.execute();
+      task.runner.execute();
       task.status = "Done";
       this.logger?.verbose(`${task.name} - ${task.status}`);
     }
