@@ -1,5 +1,5 @@
 import { spawn } from "child_process";
-import { Runner } from "./task";
+import { Runner } from "./runnerInterface";
 
 export class CommandRunner implements Runner {
   private command: string;

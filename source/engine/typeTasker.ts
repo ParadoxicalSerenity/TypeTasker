@@ -1,15 +1,32 @@
 import winston from "winston";
-import { Task } from "./task";
+import { getLogger } from "../logger";
+import { TypeTaskerTask, TypeTaskerTypeParams } from "./task";
+import { TypeTaskerEngine } from "./engine";
+
+type TypeTaskerConfig = {
+  logger: LoggerConfig;
+};
+
+type LoggerConfig = {
+  logLevel: "verbose";
+  enabled: boolean;
+};
 
 export class TypeTasker {
-  private internalTask: Task;
-  private logger: winston.Logger;
-
-  constructor(task: Task, logger: winston.Logger) {
-    this.internalTask = task;
-    this.logger = logger;
+  logger: winston.Logger | undefined;
+  engine: TypeTaskerEngine;
+  constructor(config: TypeTaskerConfig) {
+    if (config.logger.enabled) this.logger = getLogger(config.logger.logLevel);
+    this.engine = new TypeTaskerEngine(this.logger);
   }
-  async run() {
-    this.internalTask.execute(this.logger);
+
+  createTask(params: TypeTaskerTypeParams): TypeTaskerTask {
+    return new TypeTaskerTask(params);
+  }
+
+  async run(task: TypeTaskerTask) {
+    this.logger?.info("Starting TypeTasker Execution");
+    await this.engine.run(task);
+    this.logger?.info("Ending TypeTasker Execution");
   }
 }

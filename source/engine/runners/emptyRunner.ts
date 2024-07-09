@@ -1,4 +1,4 @@
-import { Runner } from "./task";
+import { Runner } from "./runnerInterface";
 
 export class EmptyRunner implements Runner {
   async execute() {

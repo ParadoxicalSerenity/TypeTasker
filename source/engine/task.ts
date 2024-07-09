@@ -1,49 +1,28 @@
-import winston from "winston";
+import { Runner } from "./runners/runnerInterface";
 
 type TaskStatus = "Pending" | "Waiting" | "Processing" | "Done";
 
-export interface Runner {
-  execute(): void;
-}
-
-export type TaskParams = {
+export type TypeTaskerTypeParams = {
   name: string;
   runner: Runner;
-  dependsOn: Task[];
+  dependsOn: TypeTaskerTask[];
 };
 
-export class Task {
+export class TypeTaskerTask implements TypeTaskerTypeParams {
   name: string;
-  status: TaskStatus;
-  private dependencies: Task[];
-  private runner: Runner;
-
-  constructor(params: TaskParams) {
+  runner: Runner;
+  dependsOn: TypeTaskerTask[];
+  private _status: TaskStatus;
+  constructor(params: TypeTaskerTypeParams) {
     this.name = params.name;
     this.runner = params.runner;
-    this.dependencies = params.dependsOn;
-    this.status = "Pending";
+    this.dependsOn = params.dependsOn ?? [];
+    this._status = "Pending";
   }
-
-  private runSelf(logger: winston.Logger) {
-    this.status = "Processing";
-    logger.info(`Running ${this.name} task...`);
-    this.runner.execute();
-    this.status = "Done";
+  get status() {
+    return this._status;
   }
-
-  private async runDependencies(logger: winston.Logger) {
-    this.status = "Waiting";
-    logger.verbose(`Running ${this.name} task dependencies...`);
-    if (this.dependencies.length >= 1) {
-      const promises = this.dependencies.map((task) => task.execute(logger));
-      await Promise.all(promises);
-    }
-  }
-
-  async execute(logger: winston.Logger) {
-    if (this.status !== "Pending") return;
-    this.runDependencies(logger);
-    this.runSelf(logger);
+  set status(status: TaskStatus) {
+    this._status = status;
   }
 }
