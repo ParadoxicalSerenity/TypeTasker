@@ -1,4 +1,4 @@
-import { TypeTasker, CommandRunner } from "./main";
+import { TypeTasker, CommandRunner, CallbackRunner } from "./main";
 
 const typeTasker = new TypeTasker({
   logger: { enabled: true, logLevel: "verbose" },
@@ -6,25 +6,33 @@ const typeTasker = new TypeTasker({
 
 const test_one = typeTasker.createTask({
   name: "test_one",
-  runner: new CommandRunner("tree", ["-I", "node_modules", "."]),
+  runner: new CallbackRunner(()=>{
+    console.log('test_one')
+  }),
   dependsOn: [],
 });
 const test_two = typeTasker.createTask({
   name: "test_two",
-  runner: new CommandRunner("ls", ["/usr/share/doc"]),
+  runner: new CallbackRunner(()=>{
+    console.log('test_two')
+  }),
   dependsOn: [test_one],
 });
 
 const test_three = typeTasker.createTask({
   name: "test_three",
-  runner: new CommandRunner("ps", ["aux"]),
+  runner: new CallbackRunner(()=>{
+    console.log('test_three')
+  }),
   dependsOn: [test_two, test_one],
 });
 
 typeTasker.run(
   typeTasker.createTask({
     name: "Default",
-    runner: new CommandRunner("df", ["--human-readable", "/"]),
+       runner: new CallbackRunner(()=>{
+      console.log('default')
+    }),
     dependsOn: [test_two, test_one, test_three],
   })
 );

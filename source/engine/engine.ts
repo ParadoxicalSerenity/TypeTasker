@@ -6,6 +6,13 @@ export class TypeTaskerEngine {
   constructor(logger: winston.Logger | undefined) {
     this.logger = logger;
   }
+  /**
+   * Proxy Method.
+   * @param task
+   */
+  start(task: TypeTaskerTask){
+    this.run(task)
+  }
   async run(task: TypeTaskerTask) {
     if (task.status === "Pending") {
       task.status = "Waiting";

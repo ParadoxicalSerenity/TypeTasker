@@ -26,7 +26,7 @@ export class TypeTasker {
 
   async run(task: TypeTaskerTask) {
     this.logger?.info("Starting TypeTasker Execution");
-    await this.engine.run(task);
+    await this.engine.start(task);
     this.logger?.info("Ending TypeTasker Execution");
   }
 }
