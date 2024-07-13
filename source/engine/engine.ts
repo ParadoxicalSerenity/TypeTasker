@@ -30,15 +30,23 @@ export class TypeTaskerEngine {
   }
   async run(task: TypeTaskerTask) {
     if (task.status === "Pending") {
-      task.status = "Waiting";
-      this.logger?.verbose(`${task.name} - ${task.status}`);
-      const promises = task.dependsOn.map(async (task) => await this.run(task));
-      Promise.all(promises);
-      task.status = "Processing";
-      this.logger?.verbose(`${task.name} - ${task.status}`);
-      task.runner.execute();
-      task.status = "Done";
-      this.logger?.verbose(`${task.name} - ${task.status}`);
+      this.executeDependencies(task);
+      this.executeSelf(task);
     }
+  }
+
+  private executeDependencies(task: TypeTaskerTask) {
+    task.status = "Waiting";
+    this.logger?.verbose(`${task.name} - ${task.status}`);
+    const promises = task.dependsOn.map(async (task) => await this.run(task));
+    Promise.all(promises);
+  }
+
+  private executeSelf(task: TypeTaskerTask) {
+    task.status = "Processing";
+    this.logger?.verbose(`${task.name} - ${task.status}`);
+    task.runner.execute();
+    task.status = "Done";
+    this.logger?.verbose(`${task.name} - ${task.status}`);
   }
 }
