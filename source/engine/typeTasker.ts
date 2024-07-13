@@ -8,7 +8,7 @@ type TypeTaskerConfig = {
 };
 
 type LoggerConfig = {
-  logLevel: "verbose";
+  logLevel: "verbose" | "info";
   enabled: boolean;
 };
 
