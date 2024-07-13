@@ -1,38 +1,28 @@
-import { TypeTasker, CommandRunner, CallbackRunner } from "./main";
+import { TypeTasker, TypeTaskerCallback } from "./main";
 
 const typeTasker = new TypeTasker({
   logger: { enabled: true, logLevel: "debug" },
 });
 
-const test_one = typeTasker.createTask({
+const test_one = new TypeTaskerCallback({
   name: "test_one",
-  runner: new CallbackRunner(() => {
-    console.log("test_one");
-  }),
   dependsOn: [],
+  callback: () => {},
 });
-const test_two = typeTasker.createTask({
+const test_two = new TypeTaskerCallback({
   name: "test_two",
-  runner: new CallbackRunner(() => {
-    console.log("test_two");
-  }),
   dependsOn: [test_one],
+  callback: () => {},
 });
-
-const test_three = typeTasker.createTask({
+const test_three = new TypeTaskerCallback({
   name: "test_three",
-  runner: new CallbackRunner(() => {
-    console.log("test_three");
-  }),
-  dependsOn: [test_two, test_one],
+  dependsOn: [test_one],
+  callback: () => {},
 });
-
-const defaultTask = typeTasker.createTask({
+const defaultTask = new TypeTaskerCallback({
   name: "def",
-  runner: new CallbackRunner(() => {
-    console.log("default");
-  }),
-  dependsOn: [test_two, test_one, test_three],
+  dependsOn: [test_one, test_three, test_two],
+  callback: () => {},
 });
 
-typeTasker.run("def");
+typeTasker.run(defaultTask);
