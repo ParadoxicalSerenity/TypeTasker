@@ -1,11 +1,34 @@
+import { spawn } from "child_process";
+import { Task, TaskBaseParams, TaskStatus } from "../task";
 import { Runner } from "./runnerInterface";
 
-export class CallbackRunner implements Runner {
+export type CallbackTaskParams = {
   callback: () => void;
-  constructor(callback: () => void) {
-    this.callback = callback;
+} & TaskBaseParams;
+
+export class TypeTaskerCallback implements Runner {
+  name: string;
+  dependsOn: Task[];
+
+  private _status: TaskStatus;
+  callback: () => void;
+
+  constructor(params: CallbackTaskParams) {
+    this.name = params.name;
+    this.dependsOn = params.dependsOn ?? [];
+    this._status = "Pending";
+    this.callback = params.callback;
   }
-  async execute() {
-    await this.callback();
+  async execute(): Promise<void> {
+    await this.executeCommand(this.callback);
+  }
+  private async executeCommand(callback: () => void) {
+    return await callback();
+  }
+  get status() {
+    return this._status;
+  }
+  set status(status: TaskStatus) {
+    this._status = status;
   }
 }

@@ -1,14 +1,28 @@
 import { spawn } from "child_process";
+import { Task, TaskBaseParams, TaskStatus } from "../task";
 import { Runner } from "./runnerInterface";
 
-export class CommandRunner implements Runner {
-  private command: string;
+export type CommandTaskParams = {
+  command: string;
+  args: string[];
+} & TaskBaseParams;
+
+export class TypeTaskerCommand implements Runner {
+  name: string;
+  dependsOn: Task[];
+
+  private _status: TaskStatus;
   private args: string[];
-  constructor(command: string, args: string[]) {
-    this.command = command;
-    this.args = args;
+  private command: string;
+
+  constructor(params: CommandTaskParams) {
+    this.name = params.name;
+    this.dependsOn = params.dependsOn ?? [];
+    this._status = "Pending";
+    this.args = params.args;
+    this.command = params.command;
   }
-  async execute() {
+  async execute(): Promise<void> {
     await this.executeCommand(this.command, this.args);
   }
   private async executeCommand(command: string, args: string[]) {
@@ -24,5 +38,11 @@ export class CommandRunner implements Runner {
         reject(code);
       });
     });
+  }
+  get status() {
+    return this._status;
+  }
+  set status(status: TaskStatus) {
+    this._status = status;
   }
 }

@@ -1,7 +1,7 @@
 import winston from "winston";
 import { getLogger } from "../logger";
-import { TypeTaskerTask, TypeTaskerTypeParams } from "./task";
 import { TypeTaskerEngine } from "./engine";
+import { Task } from "./task";
 
 type TypeTaskerConfig = {
   logger: LoggerConfig;
@@ -28,10 +28,10 @@ export class TypeTasker {
    * @param params
    * @returns
    */
-  createTask(params: TypeTaskerTypeParams): TypeTaskerTask {
-    const task = new TypeTaskerTask(params);
-    this.engine.register(task);
-    return task;
+  register(tasks: Task[]) {
+    tasks.forEach((task) => {
+      this.engine.register(task);
+    });
   }
 
   async run(task_name: string) {

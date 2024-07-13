@@ -1,9 +1,9 @@
 import winston, { verbose } from "winston";
-import { TypeTaskerTask } from "./task";
+import { Task } from "./task";
 
 export class TypeTaskerEngine {
   logger: winston.Logger | undefined;
-  tasks: TypeTaskerTask[] = [];
+  tasks: Task[] = [];
   constructor(logger: winston.Logger | undefined) {
     this.logger = logger;
   }
@@ -15,7 +15,7 @@ export class TypeTaskerEngine {
     return this.tasks.find((task) => task.name === task_name);
   }
 
-  register(task: TypeTaskerTask) {
+  register(task: Task) {
     if (!this.taskNameIsRegistered(task.name)) {
       this.logger?.verbose(`Registering ${task.name}`);
       this.tasks.push(task);
@@ -28,24 +28,24 @@ export class TypeTaskerEngine {
       throw new Error(`${task_name} not registered with the execution engine`);
     this.run(task);
   }
-  async run(task: TypeTaskerTask) {
+  async run(task: Task) {
     if (task.status === "Pending") {
       this.executeDependencies(task);
       this.executeSelf(task);
     }
   }
 
-  private executeDependencies(task: TypeTaskerTask) {
+  private executeDependencies(task: Task) {
     task.status = "Waiting";
     this.logger?.verbose(`${task.name} - ${task.status}`);
     const promises = task.dependsOn.map(async (task) => await this.run(task));
-    Promise.all(promises);
+    Promise.allSettled(promises);
   }
 
-  private executeSelf(task: TypeTaskerTask) {
+  private executeSelf(task: Task) {
     task.status = "Processing";
     this.logger?.verbose(`${task.name} - ${task.status}`);
-    task.runner.execute();
+    task.execute();
     task.status = "Done";
     this.logger?.verbose(`${task.name} - ${task.status}`);
   }
