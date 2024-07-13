@@ -37,6 +37,5 @@ export class TypeTasker {
   async run(task_name: string) {
     this.logger?.info("Starting TypeTasker Execution");
     await this.engine.start(task_name);
-    this.logger?.info("Ending TypeTasker Execution");
   }
 }

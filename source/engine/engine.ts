@@ -11,7 +11,7 @@ export class TypeTaskerEngine {
   private taskNameIsRegistered(task_name: string): boolean {
     return this.tasks.some((task) => task.name === task_name);
   }
-  findTask(task_name: string) {
+  private findTask(task_name: string) {
     return this.tasks.find((task) => task.name === task_name);
   }
 
@@ -30,23 +30,16 @@ export class TypeTaskerEngine {
   }
   async run(task: Task) {
     if (task.status === "Pending") {
-      this.executeDependencies(task);
-      this.executeSelf(task);
+      task.status = "Waiting";
+      this.logger?.verbose(`${task.name} - ${task.status}`);
+      const promises = task.dependsOn.map(async (task) => await this.run(task));
+      Promise.allSettled(promises);
+
+      task.status = "Processing";
+      this.logger?.verbose(`${task.name} - ${task.status}`);
+      await task.execute();
+      task.status = "Done";
+      this.logger?.verbose(`${task.name} - ${task.status}`);
     }
-  }
-
-  private executeDependencies(task: Task) {
-    task.status = "Waiting";
-    this.logger?.verbose(`${task.name} - ${task.status}`);
-    const promises = task.dependsOn.map(async (task) => await this.run(task));
-    Promise.allSettled(promises);
-  }
-
-  private executeSelf(task: Task) {
-    task.status = "Processing";
-    this.logger?.verbose(`${task.name} - ${task.status}`);
-    task.execute();
-    task.status = "Done";
-    this.logger?.verbose(`${task.name} - ${task.status}`);
   }
 }
