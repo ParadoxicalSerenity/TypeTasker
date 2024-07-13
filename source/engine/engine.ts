@@ -21,11 +21,8 @@ export class TypeTaskerEngine {
       this.tasks.push(task);
     } else throw new Error("Tasks with the same name are not permitted.");
   }
-  start(task_name: string) {
-    this.logger?.debug(`Attempting to run ${task_name}`);
-    const task = this.findTask(task_name);
-    if (!task)
-      throw new Error(`${task_name} not registered with the execution engine`);
+  start(task: Task) {
+    this.logger?.debug(`Attempting to run ${task.name}`);
     this.run(task);
   }
   async run(task: Task) {

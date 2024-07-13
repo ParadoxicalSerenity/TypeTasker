@@ -25,6 +25,4 @@ const defaultTask = new TypeTaskerCallback({
   callback: () => {},
 });
 
-typeTasker.register([defaultTask, test_three, test_two, test_one]);
-
-typeTasker.run("def");
+typeTasker.run(defaultTask);

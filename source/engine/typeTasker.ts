@@ -21,21 +21,8 @@ export class TypeTasker {
     this.engine = new TypeTaskerEngine(this.logger);
   }
 
-  /**
-   * Create and register a task.
-   * The task is returned however you only need to keep track of it if you want to use it directly,
-   * since it will still be regsitered with the execution engine.
-   * @param params
-   * @returns
-   */
-  register(tasks: Task[]) {
-    tasks.forEach((task) => {
-      this.engine.register(task);
-    });
-  }
-
-  async run(task_name: string) {
+  async run(task: Task) {
     this.logger?.info("Starting TypeTasker Execution");
-    await this.engine.start(task_name);
+    await this.engine.start(task);
   }
 }
