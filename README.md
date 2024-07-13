@@ -20,6 +20,7 @@ Install typetasker as a development dependency with npm
 [Documentation](https://github.com/ParadoxicalSerenity/TypeTasker/wiki)
 
 ## Example
+
 ```typescript
 import { TypeTasker, EmptyRunner } from "./main";
 
@@ -48,7 +49,7 @@ const test_four = typeTasker.createTask({
   dependsOn: [test_two, test_one, test_three],
 });
 
-typeTasker.run("test_four");
+typeTasker.run("test_four"); //Use the task name that you want to run.
 ```
 
 ## Why another Task Runner?
@@ -58,6 +59,8 @@ I started working on TypeTasker simply because I simply don't like any other exi
 ## Is the API stable?
 
 Not really, I'm still in the early stages of figuring out how I want this to work long term so anything before version 1.0.0 is expected to have breaking changes almost every release.
+
+Update: Since version 0.5.0 there should be far less breaking changes but what I said above still applies.
 
 ## License
 
