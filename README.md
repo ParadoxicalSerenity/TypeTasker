@@ -48,7 +48,7 @@ const test_four = typeTasker.createTask({
   dependsOn: [test_two, test_one, test_three],
 });
 
-typeTasker.run(test_four);
+typeTasker.run("test_four");
 ```
 
 ## Why another Task Runner?
