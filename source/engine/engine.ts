@@ -1,5 +1,5 @@
 import winston, { verbose } from "winston";
-import { Task } from "./task";
+import { Task } from "./typeTasker";
 
 export class TypeTaskerEngine {
   logger: winston.Logger | undefined;
