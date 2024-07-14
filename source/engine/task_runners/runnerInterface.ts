@@ -1,4 +1,4 @@
-import { Task, TaskStatus } from "../task";
+import { Task, TaskStatus } from "../typeTasker";
 
 export interface Runner {
   name: string;

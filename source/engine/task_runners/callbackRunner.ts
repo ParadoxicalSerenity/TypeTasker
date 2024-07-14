@@ -1,6 +1,5 @@
-import { spawn } from "child_process";
-import { Task, TaskBaseParams, TaskStatus } from "../task";
 import { Runner } from "./runnerInterface";
+import { Task, TaskBaseParams, TaskStatus } from "../typeTasker";
 
 export type CallbackTaskParams = {
   callback: () => void;
