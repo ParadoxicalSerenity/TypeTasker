@@ -1,4 +1,4 @@
-import winston, { verbose } from "winston";
+import winston from "winston";
 import { Task } from "./typeTasker";
 
 export class TypeTaskerEngine {

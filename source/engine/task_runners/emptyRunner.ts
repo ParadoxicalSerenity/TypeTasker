@@ -1,5 +1,4 @@
-import { spawn } from "child_process";
-import { Task, TaskBaseParams, TaskStatus } from "../task";
+import { Task, TaskBaseParams, TaskStatus } from "../typeTasker";
 import { Runner } from "./runnerInterface";
 
 export type EmptyTaskParams = TaskBaseParams;
