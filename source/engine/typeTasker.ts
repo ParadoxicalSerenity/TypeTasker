@@ -1,7 +1,17 @@
 import winston from "winston";
-import { getLogger } from "../logger";
+import { getLogger } from "../logger/logger";
 import { TypeTaskerEngine } from "./engine";
-import { Task } from "./task";
+import { TypeTaskerCallback } from "./task_runners/callbackRunner";
+import { TypeTaskerCommand } from "./task_runners/commandRunner";
+import { TypeTaskerEmpty } from "./task_runners/emptyRunner";
+
+export type TaskStatus = "Pending" | "Waiting" | "Processing" | "Done";
+export type Task = TypeTaskerCommand | TypeTaskerCallback | TypeTaskerEmpty;
+
+export type TaskBaseParams = {
+  name: string;
+  dependsOn: Task[];
+};
 
 type TypeTaskerConfig = {
   logger: LoggerConfig;

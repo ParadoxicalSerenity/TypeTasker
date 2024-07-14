@@ -1,6 +1,6 @@
 {
   "name": "typetasker",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A typescript first task runner.",
   "main": "dist/main.js",
   "bin": {
@@ -32,7 +32,6 @@
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
     "commander": "^12.1.0",
-    "express": "^4.19.2",
     "winston": "^3.13.0"
   },
   "devDependencies": {

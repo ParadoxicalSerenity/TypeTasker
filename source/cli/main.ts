@@ -1,6 +1,6 @@
 import { program, Option } from "@commander-js/extra-typings";
 import { argv } from "process";
-import { getLogger } from "../logger";
+import { getLogger } from "../logger/logger";
 
 program
   .name("TypeTasker")
