@@ -9,7 +9,7 @@ export type CommandTaskParams = {
 
 export class TypeTaskerCommand implements Runner {
   name: string;
-  dependsOn: Task[];
+  dependsOn?: Task[];
 
   private _status: TaskStatus;
   private args: string[];

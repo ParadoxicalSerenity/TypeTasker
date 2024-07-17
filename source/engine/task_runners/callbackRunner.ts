@@ -7,14 +7,14 @@ export type CallbackTaskParams = {
 
 export class TypeTaskerCallback implements Runner {
   name: string;
-  dependsOn: Task[];
+  dependsOn?: Task[];
 
   private _status: TaskStatus;
   callback: () => void;
 
   constructor(params: CallbackTaskParams) {
     this.name = params.name;
-    this.dependsOn = params.dependsOn ?? [];
+    this.dependsOn = params.dependsOn;
     this._status = "Pending";
     this.callback = params.callback;
   }
