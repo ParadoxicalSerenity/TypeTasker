@@ -5,7 +5,7 @@ export type EmptyTaskParams = TaskBaseParams;
 
 export class TypeTaskerEmpty implements Runner {
   name: string;
-  dependsOn: Task[];
+  dependsOn?: Task[];
   private _status: TaskStatus;
 
   constructor(params: EmptyTaskParams) {

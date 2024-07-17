@@ -9,7 +9,7 @@ export type Task = TypeTaskerCommand | TypeTaskerCallback | TypeTaskerEmpty;
 
 export type TaskBaseParams = {
   name: string;
-  dependsOn: Task[];
+  dependsOn?: Task[];
 };
 
 type TypeTaskerConfig = {

@@ -29,8 +29,10 @@ export class TypeTaskerEngine {
     if (task.status === "Pending") {
       task.status = "Waiting";
       this.logger.verbose(`${task.name} - ${task.status}`);
-      const promises = task.dependsOn.map(async (task) => await this.run(task));
-      Promise.allSettled(promises);
+      const promises = task.dependsOn?.map(
+        async (task) => await this.run(task)
+      );
+      if (promises) Promise.allSettled(promises);
 
       task.status = "Processing";
       this.logger.verbose(`${task.name} - ${task.status}`);
