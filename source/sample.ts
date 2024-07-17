@@ -1,7 +1,7 @@
 import { TypeTasker, TypeTaskerCallback } from "./main";
 
 const typeTasker = new TypeTasker({
-  logger: { enabled: true, logLevel: "debug" },
+  logger: { enabled: true, logLevel: "info" },
 });
 
 const test_one = new TypeTaskerCallback({

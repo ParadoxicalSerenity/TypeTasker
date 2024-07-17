@@ -1,5 +1,4 @@
-import winston from "winston";
-import { getLogger } from "../logger/logger";
+import { Logger, LoggerParams } from "../logger/logger";
 import { TypeTaskerEngine } from "./engine";
 import { TypeTaskerCallback } from "./task_runners/callbackRunner";
 import { TypeTaskerCommand } from "./task_runners/commandRunner";
@@ -14,20 +13,18 @@ export type TaskBaseParams = {
 };
 
 type TypeTaskerConfig = {
-  logger: LoggerConfig;
-};
-
-type LoggerConfig = {
-  logLevel: "verbose" | "info" | "debug";
-  enabled: boolean;
+  logger: LoggerParams;
 };
 
 export class TypeTasker {
-  logger: winston.Logger | undefined;
+  logger: Logger;
   engine: TypeTaskerEngine;
 
   constructor(config: TypeTaskerConfig) {
-    if (config.logger.enabled) this.logger = getLogger(config.logger.logLevel);
+    this.logger = new Logger({
+      enabled: config.logger.enabled,
+      logLevel: config.logger.logLevel,
+    });
     this.engine = new TypeTaskerEngine(this.logger);
   }
 

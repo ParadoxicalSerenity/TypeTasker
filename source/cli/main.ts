@@ -1,6 +1,5 @@
 import { program, Option } from "@commander-js/extra-typings";
 import { argv } from "process";
-import { getLogger } from "../logger/logger";
 
 program
   .name("TypeTasker")
@@ -12,8 +11,8 @@ program
       .default("info")
   )
 
-  .action((option) => {
-    const logger = getLogger(option.logLevel);
+  .action((_option) => {
+    //NOP
   });
 
 program.parse(argv);
