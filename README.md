@@ -5,7 +5,7 @@
 ![NPM Type Definitions](https://img.shields.io/npm/types/typetasker)
 ![NPM License](https://img.shields.io/npm/l/typetasker)
 
-Typescript first task runner.
+TypeTasker is a Typescript first task runner.
 
 ## Installation
 
@@ -17,7 +17,18 @@ Install typetasker as a development dependency with npm
 
 ## Documentation
 
-[Documentation](https://github.com/ParadoxicalSerenity/TypeTasker/wiki)
+[Documentation](https://github.com/ParadoxicalSerenity/TypeTasker/wiki) - Will not really be up to date or correct till V1 as I don't plan on maintaining docs in this stage of development.
+
+## Features
+
+- Simple API.
+- Built with Typescript for Typescript.
+- Still works great with Javascript.
+- Simple Task Running.
+
+### Planned features
+
+See [issues](https://github.com/ParadoxicalSerenity/TypeTasker/issues).
 
 ## Example
 
@@ -54,7 +65,7 @@ typeTasker.run(defaultTask);
 
 ## Why another Task Runner?
 
-I started working on TypeTasker simply because I simply don't like any other existing options that I've come across for one reason or another.
+I started working on TypeTasker simply because I simply don't like any other existing options that I've come across for one reason or another. It's not perfect but it works great for what I need.
 
 ## Is the API stable?
 
