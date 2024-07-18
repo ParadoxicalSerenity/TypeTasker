@@ -6,7 +6,6 @@ const typeTasker = new TypeTasker({
 
 const test_one = new TypeTaskerCallback({
   name: "test_one",
-  dependsOn: [],
   callback: () => {},
 });
 const test_two = new TypeTaskerCallback({
