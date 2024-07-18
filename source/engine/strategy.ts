@@ -2,7 +2,7 @@ import { Task } from "./typeTasker";
 
 export type StratagyType = "Parallel" | "Serial";
 
-export class BaseStratagy {
+export class BaseStrategy {
   private stratagyType: StratagyType;
   private tasks: Task[];
   constructor(stratagyType: StratagyType, tasks: Task[]) {
@@ -11,13 +11,13 @@ export class BaseStratagy {
   }
 }
 
-export class Parallel extends BaseStratagy {
+export class Parallel extends BaseStrategy {
   constructor(tasks: Task[]) {
     super("Parallel", tasks);
   }
 }
 
-export class Serial extends BaseStratagy {
+export class Serial extends BaseStrategy {
   constructor(tasks: Task[]) {
     super("Serial", tasks);
   }
