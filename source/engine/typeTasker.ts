@@ -28,8 +28,8 @@ export class TypeTasker {
     this.engine = new TypeTaskerEngine(this.logger);
   }
 
-  async run(task: Task) {
+  async run(node: Node) {
     this.logger?.info("Starting TypeTasker Execution");
-    await this.engine.start(task);
+    await this.engine.start(node);
   }
 }
