@@ -2,29 +2,23 @@ import { Task } from "./typeTasker";
 
 export type StratagyType = "Parallel" | "Serial";
 
-export interface RunnerStrategy {
-  stratagyType: StratagyType;
-}
-
 export class BaseStratagy {
+  private stratagyType: StratagyType;
   private tasks: Task[];
-  constructor(tasks: Task[]) {
+  constructor(stratagyType: StratagyType, tasks: Task[]) {
+    this.stratagyType = stratagyType;
     this.tasks = tasks;
   }
 }
 
-export class Parallel extends BaseStratagy implements RunnerStrategy {
-  stratagyType: StratagyType;
+export class Parallel extends BaseStratagy {
   constructor(tasks: Task[]) {
-    super(tasks);
-    this.stratagyType = "Parallel";
+    super("Parallel", tasks);
   }
 }
 
-export class Serial extends BaseStratagy implements RunnerStrategy {
-  stratagyType: StratagyType;
+export class Serial extends BaseStratagy {
   constructor(tasks: Task[]) {
-    super(tasks);
-    this.stratagyType = "Serial";
+    super("Serial", tasks);
   }
 }
