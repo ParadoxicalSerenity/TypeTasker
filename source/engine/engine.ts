@@ -1,5 +1,5 @@
 import { Task } from "./typeTasker";
-import { Logger } from "../logger/logger";
+import { Logger } from "./logger/logger";
 
 export class TypeTaskerEngine {
   logger: Logger;

@@ -16,6 +16,7 @@ export type LoggerParams = {
 export type LogLevel = "error" | "warn" | "info" | "verbose" | "debug";
 
 export class Logger implements LoggerContract {
+  private internalLogger: winston.Logger;
   private enabled: boolean;
   private logLevel: LogLevel;
   private levelMap: Record<string, number> = {
@@ -25,8 +26,6 @@ export class Logger implements LoggerContract {
     verbose: 3 as const,
     debug: 4 as const,
   } as const;
-
-  private internalLogger: winston.Logger;
 
   constructor(params: LoggerParams) {
     this.enabled = params.enabled;

@@ -1,4 +1,4 @@
-import { Logger, LoggerParams } from "../logger/logger";
+import { Logger, LoggerParams } from "./logger/logger";
 import { TypeTaskerEngine } from "./engine";
 import { TypeTaskerCallback } from "./task_runners/callbackRunner";
 import { TypeTaskerCommand } from "./task_runners/commandRunner";
