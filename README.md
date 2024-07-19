@@ -33,34 +33,40 @@ See [issues](https://github.com/ParadoxicalSerenity/TypeTasker/issues).
 ## Example
 
 ```typescript
-import { TypeTasker, TypeTaskerCallback } from "./main";
+typeTasker.run(
+  new Serial([
+    new TypeTaskerCallback({
+      name: "test_one",
+      callback: async () => {
+        await wasteTime("Job One");
+        logger.info("Hello from job one!");
+      },
+    }),
+    new TypeTaskerCallback({
+      name: "test_two",
+      callback: () => {
+        logger.info("Hello from job two!");
+      },
+    }),
+    new Parallel([
+      new TypeTaskerCallback({
+        name: "test_three",
+        callback: async () => {
+          await wasteTime("Job Three");
 
-const typeTasker = new TypeTasker({
-  logger: { enabled: true, logLevel: "debug" },
-});
-
-const test_one = new TypeTaskerCallback({
-  name: "test_one",
-  dependsOn: [],
-  callback: () => {},
-});
-const test_two = new TypeTaskerCallback({
-  name: "test_two",
-  dependsOn: [test_one],
-  callback: () => {},
-});
-const test_three = new TypeTaskerCallback({
-  name: "test_three",
-  dependsOn: [test_one],
-  callback: () => {},
-});
-const defaultTask = new TypeTaskerCallback({
-  name: "def",
-  dependsOn: [test_one, test_three, test_two],
-  callback: () => {},
-});
-
-typeTasker.run(defaultTask);
+          logger.info("Hello from job three!");
+        },
+      }),
+      new TypeTaskerCallback({
+        name: "test_four",
+        callback: () => {
+          logger.info("Hello from job four!");
+        },
+      }),
+    ]),
+    new Parallel([]),
+  ])
+);
 ```
 
 ## Why another Task Runner?
