@@ -1,5 +1,5 @@
 import { Parallel, Serial } from "./strategy";
-import { TypeTasker, TypeTaskerCallback } from "./main";
+import { TypeTasker, TypeTaskerCallback, TypeTaskerCommand } from "./main";
 import { Logger, LogLevel } from "./logger";
 
 const logLevel: LogLevel = "verbose";
@@ -25,17 +25,16 @@ typeTasker.run(
       },
     }),
     new Parallel([
-      new TypeTaskerCallback({
+      new TypeTaskerCommand({
         name: "test_three",
-        callback: async () => {
-          logger.info("Hello from job three!");
-        },
+        command: "ps",
+        args: ["aux"],
       }),
-      new TypeTaskerCallback({
-        name: "test_four",
-        callback: () => {
-          logger.info("Hello from job four!");
-        },
+
+      new TypeTaskerCommand({
+        name: "test_three",
+        command: "ls",
+        args: ["/usr/share/doc"],
       }),
     ]),
     new Parallel([]),
