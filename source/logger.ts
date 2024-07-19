@@ -33,7 +33,10 @@ export class Logger implements LoggerContract {
     this.internalLogger = winston.createLogger({
       transports: [
         new winston.transports.Console({
-          format: winston.format.simple(),
+          format: winston.format.combine(
+            winston.format.colorize(),
+            winston.format.simple()
+          ),
           level: params.logLevel,
         }),
       ],
