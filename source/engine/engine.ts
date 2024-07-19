@@ -36,8 +36,7 @@ export class TypeTaskerEngine {
     await Promise.allSettled(promises);
   }
 
-  async run(node: GraphNode) {
-    //First we want to check if we have a stratagy since that changes what we are doing.
+  private async run(node: GraphNode) {
     this.logger.debug("Running node...");
     if (this.nodeIsStrategy(node)) {
       this.logger.debug(`Node is a strategy...`);
@@ -45,7 +44,7 @@ export class TypeTaskerEngine {
       if (node.stratagyType === "Parallel") await this.processParallel(node);
     } else {
       this.logger.info(`Running ${node.name} logic`);
-      await node.execute();
+      node.execute();
     }
   }
   start(node: BaseStrategy) {

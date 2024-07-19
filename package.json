@@ -1,6 +1,6 @@
 {
   "name": "typetasker",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "A typescript first task runner.",
   "main": "dist/main.js",
   "bin": {
