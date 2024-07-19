@@ -1,6 +1,7 @@
 import { Task } from "./typeTasker";
-import { Logger } from "./logger/logger";
-import { BaseStrategy } from "./strategy";
+import { Logger } from "../logger";
+import { GraphNode } from "../main";
+import { BaseStrategy } from "../strategy";
 
 export class TypeTaskerEngine {
   logger: Logger;
@@ -9,6 +10,8 @@ export class TypeTaskerEngine {
     this.logger = logger;
   }
 
+  run(node: BaseStrategy) {}
+  start(node: BaseStrategy) {}
   registerTask(task: Task): void {
     const exists = this.tasks.find((stored) => {
       if (stored.name === task.name) return true;

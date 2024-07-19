@@ -1,26 +1,25 @@
-import { Task } from "./typeTasker";
+import { GraphNode } from "./main";
 
 export type StratagyType = "Parallel" | "Serial";
-export type Node = Task | BaseStrategy;
 
 export class BaseStrategy {
-  private stratagyType: StratagyType;
-  private children: Node[];
+  readonly stratagyType: StratagyType;
+  readonly children: GraphNode[];
 
-  constructor(stratagyType: StratagyType, children: Node[]) {
+  constructor(stratagyType: StratagyType, children: GraphNode[]) {
     this.stratagyType = stratagyType;
     this.children = children;
   }
 }
 
 export class Parallel extends BaseStrategy {
-  constructor(children: Node[]) {
+  constructor(children: GraphNode[]) {
     super("Parallel", children);
   }
 }
 
 export class Serial extends BaseStrategy {
-  constructor(children: Node[]) {
+  constructor(children: GraphNode[]) {
     super("Serial", children);
   }
 }

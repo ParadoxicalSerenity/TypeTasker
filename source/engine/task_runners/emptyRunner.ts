@@ -5,12 +5,10 @@ export type EmptyTaskParams = TaskBaseParams;
 
 export class TypeTaskerEmpty implements Runner {
   name: string;
-  dependsOn?: Task[];
   private _status: TaskStatus;
 
   constructor(params: EmptyTaskParams) {
     this.name = params.name;
-    this.dependsOn = params.dependsOn ?? [];
     this._status = "Pending";
   }
   async execute(): Promise<void> {

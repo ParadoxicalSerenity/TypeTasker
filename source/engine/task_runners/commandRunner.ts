@@ -9,7 +9,6 @@ export type CommandTaskParams = {
 
 export class TypeTaskerCommand implements Runner {
   name: string;
-  dependsOn?: Task[];
 
   private _status: TaskStatus;
   private args: string[];
@@ -17,7 +16,6 @@ export class TypeTaskerCommand implements Runner {
 
   constructor(params: CommandTaskParams) {
     this.name = params.name;
-    this.dependsOn = params.dependsOn ?? [];
     this._status = "Pending";
     this.args = params.args;
     this.command = params.command;

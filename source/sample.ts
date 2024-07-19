@@ -1,4 +1,4 @@
-import { Parallel, Serial } from "./engine/strategy";
+import { Parallel, Serial } from "./strategy";
 import { TypeTasker, TypeTaskerCallback } from "./main";
 
 const typeTasker = new TypeTasker({
