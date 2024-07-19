@@ -1,12 +1,18 @@
 import { Parallel, Serial } from "./strategy";
-import { TypeTasker, TypeTaskerCallback, TypeTaskerCommand } from "./main";
+import { TypeTasker, TypeTaskerCallback } from "./main";
 import { Logger, LogLevel } from "./logger";
 
-const logLevel: LogLevel = "verbose";
+const logLevel: LogLevel = "debug";
 
 const typeTasker = new TypeTasker({
   logger: { enabled: true, logLevel: logLevel },
 });
+
+async function wasteTime(orgin: string) {
+  logger.verbose(`Wasting Type for ${orgin}...`);
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+  logger.verbose(`Wasting Type for ${orgin} done!`);
+}
 
 const logger = new Logger({ enabled: true, logLevel: logLevel });
 
@@ -15,6 +21,7 @@ typeTasker.run(
     new TypeTaskerCallback({
       name: "test_one",
       callback: async () => {
+        await wasteTime("Job One");
         logger.info("Hello from job one!");
       },
     }),
@@ -25,16 +32,19 @@ typeTasker.run(
       },
     }),
     new Parallel([
-      new TypeTaskerCommand({
+      new TypeTaskerCallback({
         name: "test_three",
-        command: "ps",
-        args: ["aux"],
-      }),
+        callback: async () => {
+          await wasteTime("Job Three");
 
-      new TypeTaskerCommand({
-        name: "test_three",
-        command: "ls",
-        args: ["/usr/share/doc"],
+          logger.info("Hello from job three!");
+        },
+      }),
+      new TypeTaskerCallback({
+        name: "test_four",
+        callback: () => {
+          logger.info("Hello from job four!");
+        },
       }),
     ]),
     new Parallel([]),

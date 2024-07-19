@@ -36,7 +36,7 @@ export class TypeTaskerEngine {
     await Promise.allSettled(promises);
   }
 
-  async run(node: GraphNode) {
+  private async run(node: GraphNode) {
     //First we want to check if we have a stratagy since that changes what we are doing.
     this.logger.debug("Running node...");
     if (this.nodeIsStrategy(node)) {
