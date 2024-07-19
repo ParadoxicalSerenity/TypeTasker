@@ -69,9 +69,7 @@ I started working on TypeTasker simply because I simply don't like any other exi
 
 ## Is the API stable?
 
-Not really, I'm still in the early stages of figuring out how I want this to work long term so anything before version 1.0.0 is expected to have breaking changes almost every release.
-
-Update: Since version 0.5.0 there should be far less breaking changes but what I said above still applies.
+The API in the current V1.0.0 prerelease is mostly stable although the engine is far from done and has numerous problems that will be fixed by the time we publish V1.0.0. For the time being I don't recomend using the prerelease unless your planning on contributing since the engine is currently very broken and mid rewrite. For the time being you should stay within the realms of V0._._ since while not feature complete and using old syntax it is at least stable enough to use.
 
 ## License
 

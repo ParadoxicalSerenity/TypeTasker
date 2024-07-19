@@ -1,15 +1,15 @@
-import { Logger, LoggerParams } from "../logger/logger";
+import { Logger, LoggerParams } from "../logger";
 import { TypeTaskerEngine } from "./engine";
 import { TypeTaskerCallback } from "./task_runners/callbackRunner";
 import { TypeTaskerCommand } from "./task_runners/commandRunner";
 import { TypeTaskerEmpty } from "./task_runners/emptyRunner";
+import { BaseStrategy } from "../strategy";
 
 export type TaskStatus = "Pending" | "Waiting" | "Processing" | "Done";
 export type Task = TypeTaskerCommand | TypeTaskerCallback | TypeTaskerEmpty;
 
 export type TaskBaseParams = {
   name: string;
-  dependsOn?: Task[];
 };
 
 type TypeTaskerConfig = {
@@ -25,11 +25,12 @@ export class TypeTasker {
       enabled: config.logger.enabled,
       logLevel: config.logger.logLevel,
     });
+    this.logger.debug("Creating engine instance...");
     this.engine = new TypeTaskerEngine(this.logger);
   }
 
-  async run(task: Task) {
-    this.logger?.info("Starting TypeTasker Execution");
-    await this.engine.start(task);
+  async run(node: BaseStrategy) {
+    this.logger?.info("Starting TypeTasker Engine...");
+    await this.engine.start(node);
   }
 }

@@ -1,5 +1,10 @@
-export { Runner as CustomRunner } from "./engine/task_runners/runnerInterface.js";
-export { TypeTasker } from "./engine/typeTasker.js";
-export { TypeTaskerCommand } from "./engine/task_runners/commandRunner.js";
-export { TypeTaskerEmpty } from "./engine/task_runners/emptyRunner.js";
-export { TypeTaskerCallback } from "./engine/task_runners/callbackRunner.js";
+import { Task } from "./engine/typeTasker";
+import { BaseStrategy } from "./strategy";
+
+export { Runner as CustomRunner } from "./engine/task_runners/runnerInterface";
+export { TypeTasker } from "./engine/typeTasker";
+export { TypeTaskerCommand } from "./engine/task_runners/commandRunner";
+export { TypeTaskerEmpty } from "./engine/task_runners/emptyRunner";
+export { TypeTaskerCallback } from "./engine/task_runners/callbackRunner";
+
+export type GraphNode = Task | BaseStrategy;

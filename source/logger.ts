@@ -16,6 +16,7 @@ export type LoggerParams = {
 export type LogLevel = "error" | "warn" | "info" | "verbose" | "debug";
 
 export class Logger implements LoggerContract {
+  private internalLogger: winston.Logger;
   private enabled: boolean;
   private logLevel: LogLevel;
   private levelMap: Record<string, number> = {
@@ -26,15 +27,16 @@ export class Logger implements LoggerContract {
     debug: 4 as const,
   } as const;
 
-  private internalLogger: winston.Logger;
-
   constructor(params: LoggerParams) {
     this.enabled = params.enabled;
     this.logLevel = params.logLevel;
     this.internalLogger = winston.createLogger({
       transports: [
         new winston.transports.Console({
-          format: winston.format.simple(),
+          format: winston.format.combine(
+            winston.format.colorize(),
+            winston.format.simple()
+          ),
           level: params.logLevel,
         }),
       ],

@@ -1,28 +1,43 @@
+import { Parallel, Serial } from "./strategy";
 import { TypeTasker, TypeTaskerCallback } from "./main";
+import { Logger, LogLevel } from "./logger";
+
+const logLevel: LogLevel = "verbose";
 
 const typeTasker = new TypeTasker({
-  logger: { enabled: true, logLevel: "info" },
+  logger: { enabled: true, logLevel: logLevel },
 });
 
-const test_one = new TypeTaskerCallback({
-  name: "test_one",
-  dependsOn: [],
-  callback: () => {},
-});
-const test_two = new TypeTaskerCallback({
-  name: "test_two",
-  dependsOn: [test_one],
-  callback: () => {},
-});
-const test_three = new TypeTaskerCallback({
-  name: "test_three",
-  dependsOn: [test_one],
-  callback: () => {},
-});
-const defaultTask = new TypeTaskerCallback({
-  name: "def",
-  dependsOn: [test_one, test_three, test_two],
-  callback: () => {},
-});
+const logger = new Logger({ enabled: true, logLevel: logLevel });
 
-typeTasker.run(defaultTask);
+typeTasker.run(
+  new Serial([
+    new TypeTaskerCallback({
+      name: "test_one",
+      callback: async () => {
+        logger.info("Hello from job one!");
+      },
+    }),
+    new TypeTaskerCallback({
+      name: "test_two",
+      callback: () => {
+        logger.info("Hello from job two!");
+      },
+    }),
+    new Parallel([
+      new TypeTaskerCallback({
+        name: "test_three",
+        callback: async () => {
+          logger.info("Hello from job three!");
+        },
+      }),
+      new TypeTaskerCallback({
+        name: "test_four",
+        callback: () => {
+          logger.info("Hello from job four!");
+        },
+      }),
+    ]),
+    new Parallel([]),
+  ])
+);
