@@ -4,13 +4,16 @@ import { BaseStrategy } from "../strategy";
 
 export class TypeTaskerEngine {
   logger: Logger;
-  tasks: Task[] = [];
+  graph?: BaseStrategy;
   constructor(logger: Logger) {
     this.logger = logger;
   }
 
   run(node: BaseStrategy) {}
   start(node: BaseStrategy) {
+    this.logger.debug("Registering graph with engine...");
+    this.graph = node;
+    this.logger.debug("Starting engine execution...");
     this.run(node);
   }
 }

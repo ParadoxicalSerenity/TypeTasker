@@ -2,7 +2,7 @@ import { Parallel, Serial } from "./strategy";
 import { TypeTasker, TypeTaskerCallback } from "./main";
 
 const typeTasker = new TypeTasker({
-  logger: { enabled: true, logLevel: "info" },
+  logger: { enabled: true, logLevel: "debug" },
 });
 
 typeTasker.run(
