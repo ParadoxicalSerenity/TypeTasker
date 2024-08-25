@@ -51,15 +51,15 @@ export class Logger implements LoggerContract {
     if (this.shouldLog("error")) this.internalLogger.error(message);
   }
   warn(message: string) {
-    if (this.shouldLog("error")) this.internalLogger.warn(message);
+    if (this.shouldLog("warn")) this.internalLogger.warn(message);
   }
   info(message: string) {
-    if (this.shouldLog("error")) this.internalLogger.info(message);
+    if (this.shouldLog("info")) this.internalLogger.info(message);
   }
   verbose(message: string) {
-    if (this.shouldLog("error")) this.internalLogger.verbose(message);
+    if (this.shouldLog("verbose")) this.internalLogger.verbose(message);
   }
   debug(message: string) {
-    if (this.shouldLog("error")) this.internalLogger.debug(message);
+    if (this.shouldLog("debug")) this.internalLogger.debug(message);
   }
 }
